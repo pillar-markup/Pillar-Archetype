@@ -1,14 +1,22 @@
-% -*- mode: latex; -*- mustache tags: {{=« »=}}
-\documentclass[12pt]{book}
+% -*- mode: latex; -*- mustache tags: {{=« »=}} «! the '&' below prevents HTML escaping. »
+\ifx\wholebook\relax\else
 
-\title{«& title»}
-\author{«& authors»}
-\date{\today}
+	\documentclass[10pt,twoside,english]{root/support/latex/sbabook/sbabook}
+  \usepackage{import}
+  \subimport{root/support/latex/}{common.tex}
 
-\begin{document}
+  \hypersetup{pdfinfo = {
+    Title = {«& title»},
+    Author = {«& attribution»},
+    Keywords = {pharo, smalltalk}}}
+  \begin{document}
+\fi
 
-\maketitle
+\chapter{«& title»}
+\chapterprecis{«& attribution»}
 
 «& content»
 
+\ifx\wholebook\relax\else
 \end{document}
+\fi

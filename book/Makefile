@@ -1,9 +1,13 @@
 OUTPUTDIRECTORY = ./book-result
-LATEXTEMPLATE = ./support/templates/chapter.latex.template
-HTMLTEMPLATE = ./support/templates/chapter.html.template
+LATEXTEMPLATE = ./support/templates/template.latex.mustache
+HTMLTEMPLATE = ./support/templates/template.html.mustache
+
+EPUBMAKEFILE = ./epub-Makefile/Makefile
 
 init:
 	mkdir -p ${OUTPUTDIRECTORY}
+
+include $(EPUBMAKEFILE)
 
 #Tex compilation
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar
