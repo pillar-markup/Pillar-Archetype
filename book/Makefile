@@ -2,12 +2,13 @@ OUTPUTDIRECTORY = ./book-result
 LATEXTEMPLATE = ./support/templates/template.latex.mustache
 HTMLTEMPLATE = ./support/templates/template.html.mustache
 
-EPUBMAKEFILE = ./epub-Makefile/Makefile
+EPUBMAKEFILE = ./support/makefiles/epub.mk
 
 init:
 	mkdir -p ${OUTPUTDIRECTORY}
 
 include $(EPUBMAKEFILE)
+include ./support/makefiles/copySupport.mk
 
 #Tex compilation
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar
