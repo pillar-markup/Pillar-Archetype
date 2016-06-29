@@ -1,11 +1,10 @@
 #!/bin/bash
 
-XHTMLTEMPLATE = ./support/templates/template.xhtml.mustache
-NAVMENUTEMPLATE = ./support/templates/template.nav.mustache
-TOCMENUTEMPLATE = ./support/templates/template.toc.mustache
-CONTENTOPFTEMPLATE = ./support/templates/template.contentopf.mustache
-TITLEPAGETEMPLATE = ./support/templates/template.title_page.mustache
-CONTAINERTEMPLATE = ./support/templates/template.container.mustache
+XHTMLTEMPLATE = ./support/templates/xhtml.mustache.template
+NAVMENUTEMPLATE = ./support/templates/nav.mustache.template
+TOCMENUTEMPLATE = ./support/templates/toc.mustache.template
+CONTENTOPFTEMPLATE = ./support/templates/contentopf.mustache.template
+TITLEPAGETEMPLATE = ./support/templates/title_page.mustache.template
 
 .SECONDARY:
 
@@ -17,7 +16,6 @@ $(OUTPUTDIRECTORY)/%.epub: $(OUTPUTDIRECTORY)/%.content.opf
 	cp ./support/style/stylesheet.css $(OUTPUTDIRECTORY)/Ibook/
 	mv $(OUTPUTDIRECTORY)/$*.xhtml $(OUTPUTDIRECTORY)/Ibook/chapter.xhtml
 	#Move all the file begining by the outputFile name
-	echo $*
 	bash ./support/scripts/moveFilesToIbook.sh $* $(OUTPUTDIRECTORY)/
 	cd $(OUTPUTDIRECTORY)/Ibook/; zip -r ../tmp.zip *
 	mv $(OUTPUTDIRECTORY)/tmp.zip $@
