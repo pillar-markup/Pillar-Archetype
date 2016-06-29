@@ -7,7 +7,7 @@ EPUBMAKEFILE = ./support/makefiles/epub.mk
 include $(EPUBMAKEFILE)
 include ./support/makefiles/copySupport.mk
 
-book: book.pdf book.html
+book: book-result/book.pdf book-result/book.html
 
 #Tex compilation
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar copySupport
