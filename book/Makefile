@@ -4,9 +4,6 @@ HTMLTEMPLATE = ./support/templates/html.mustache.template
 
 EPUBMAKEFILE = ./support/makefiles/epub.mk
 
-init:
-	mkdir -p ${OUTPUTDIRECTORY}
-
 include $(EPUBMAKEFILE)
 include ./support/makefiles/copySupport.mk
 
