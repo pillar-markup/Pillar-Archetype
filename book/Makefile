@@ -19,7 +19,7 @@ $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json
 	./mustache --data=$< --template=${LATEXTEMPLATE} > $@
 
 $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
-	latexmk -outdir=${OUTPUTDIRECTORY} -use-make -pdf ${OUTPUTDIRECTORY}/$<
+	latexmk -outdir=${OUTPUTDIRECTORY} -use-make -pdf $<
 	make cleanBookResult
 
 #HTML compilation
