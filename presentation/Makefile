@@ -1,6 +1,6 @@
 OUTPUTDIRECTORY = ./book-result
-LATEXTEMPLATE = support/template/presentation.beamer.template
-HTMLTEMPLATE = support/template/presentation.deckjs.template
+LATEXTEMPLATE = support/templates/presentation.beamer.template
+HTMLTEMPLATE = support/templates/presentation.deckjs.template
 
 presentation: $(OUTPUTDIRECTORY)/presentation.pdf $(OUTPUTDIRECTORY)/presentation.html
 
