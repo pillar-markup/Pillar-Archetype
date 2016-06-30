@@ -1,9 +1,9 @@
 !My First book
 
-!!Chapter 1: Comilation
+!!Compilation
 
 ${inputFile:Chapters/Chapter1/chapter1.pillar}$
 
-!!Chapter 2
+!!Edition and Templates
 
 ${inputFile:Chapters/Chapter2/chapter2.pillar}$
