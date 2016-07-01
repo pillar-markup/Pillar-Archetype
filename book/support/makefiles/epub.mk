@@ -23,13 +23,13 @@ $(OUTPUTDIRECTORY)/%.epub: $(OUTPUTDIRECTORY)/%.content.opf
 
 #Navigation Menus
 $(OUTPUTDIRECTORY)/%.nav.xhtml.json: %.pillar
-	./pillar export --to="navmenu" --path="${<}" $<
+	./pillar export --to="navmenu" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.nav.xhtml: $(OUTPUTDIRECTORY)/%.nav.xhtml.json
 	./mustache --data=$< --template=$(NAVMENUTEMPLATE) > $@
 
 $(OUTPUTDIRECTORY)/%.toc.ncx.json: %.pillar
-	./pillar export --to="tocmenu" --path="${<}" $<
+	./pillar export --to="tocmenu" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.toc.ncx: $(OUTPUTDIRECTORY)/%.toc.ncx.json
 	./mustache --data=$< --template=$(TOCMENUTEMPLATE) > $@
@@ -43,7 +43,7 @@ $(OUTPUTDIRECTORY)/%.title_page.xhtml: $(OUTPUTDIRECTORY)/%.xhtml
 
 #Chapter compilation
 $(OUTPUTDIRECTORY)/%.xhtml.json: %.pillar
-	./pillar export --to="xhtml" --path="${<}" $<
+	./pillar export --to="xhtml" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.xhtml: $(OUTPUTDIRECTORY)/%.xhtml.json
 	./mustache --data=$< --template=$(XHTMLTEMPLATE) > $@
