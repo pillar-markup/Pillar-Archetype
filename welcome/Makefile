@@ -1,4 +1,5 @@
 OUTPUTDIRECTORY = ./book-result
+HTMLTEMPLATE = support/templates/welcome.html.template
 
 welcome: welcome.html
 
