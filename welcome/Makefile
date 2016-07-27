@@ -1,2 +1,2 @@
 compile: welcome.pillar
-	./pillar export --to=#html $<
+	./pillar export --to=html $<
