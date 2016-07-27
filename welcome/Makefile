@@ -1,7 +1,7 @@
 OUTPUTDIRECTORY = ./book-result
 HTMLTEMPLATE = support/templates/welcome.html.template
 
-welcome: welcome.html
+welcome: $(OUTPUTDIRECTORY)/welcome.html
 
 $(OUTPUTDIRECTORY)/%.html.json: %.pillar
 	./pillar export --to=html --outputDirectory=$(OUTPUTDIRECTORY) $<
