@@ -1,9 +1,14 @@
 OUTPUTDIRECTORY = ./book-result
 HTMLTEMPLATE = support/templates/welcome.html.template
 
+include ./support/makefiles/copySupport.mk
+
+initDir:
+	mkdir -p $(OUTPUTDIRECTORY)
+
 welcome: $(OUTPUTDIRECTORY)/welcome.html
 
-$(OUTPUTDIRECTORY)/%.html.json: %.pillar
+$(OUTPUTDIRECTORY)/%.html.json: %.pillar copySupport
 	./pillar export --to=html --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json

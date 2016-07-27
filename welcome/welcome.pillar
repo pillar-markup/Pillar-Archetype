@@ -1,5 +1,8 @@
 {
-    "title":"My first document while reading the 5 minutes Pillar tutorial"
+    "metadata": {
+      "title":"My first document while reading the 5 minutes Pillar tutorial"
+    },
+    "outputDirectory" : "book-result"
 }
 
 !Hello World
