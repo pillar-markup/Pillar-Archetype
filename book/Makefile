@@ -13,7 +13,7 @@ book: book-result/book.pdf book-result/book.html
 
 #Tex compilation
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar copySupport
-	./pillar export --to="LaTeX" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
+	./pillar export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
 $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json
 	./mustache --data=$< --template=${LATEXTEMPLATE} > $@
@@ -24,7 +24,7 @@ $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
 
 #HTML compilation
 $(OUTPUTDIRECTORY)/%.html.json: %.pillar copySupport
-	./pillar export --to="HTML" --path="${<}" --outputDirectory=$(OUTPUTDIRECTORY) $<
+	./pillar export --to="HTML" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
 $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json
 	./mustache --data=$< --template=${HTMLTEMPLATE} > $@
