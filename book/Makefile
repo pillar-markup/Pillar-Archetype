@@ -7,8 +7,6 @@ EPUBMAKEFILE = ./support/makefiles/epub.mk
 include $(EPUBMAKEFILE)
 include ./support/makefiles/copySupport.mk
 
-initDir:
-	mkdir -p $(OUTPUTDIRECTORY)
 book: book-result/book.pdf book-result/book.html
 
 #Tex compilation
