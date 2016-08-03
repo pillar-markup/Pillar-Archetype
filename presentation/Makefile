@@ -2,9 +2,11 @@ OUTPUTDIRECTORY = ./book-result
 LATEXTEMPLATE = support/templates/presentation.beamer.template
 HTMLTEMPLATE = support/templates/presentation.deckjs.template
 
+include ./support/makefiles/copySupport.mk
+
 presentation: $(OUTPUTDIRECTORY)/presentation.pdf $(OUTPUTDIRECTORY)/presentation.html
 
-$(OUTPUTDIRECTORY)/%.tex.json: %.pillar
+$(OUTPUTDIRECTORY)/%.tex.json: %.pillar copySupport
 	./pillar export --to="Beamer" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json
@@ -13,7 +15,7 @@ $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json
 $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
 	latexmk -silent -outdir=${OUTPUTDIRECTORY} -use-make -pdf $<
 
-$(OUTPUTDIRECTORY)/%.html.json: %.pillar
+$(OUTPUTDIRECTORY)/%.html.json: %.pillar copySupport
 	./pillar export --to="DeckJS" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
 $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json

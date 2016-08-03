@@ -36,10 +36,6 @@
 \date{\today}
 \slidesid{«& slideId»}
 
-\titlegraphic{\includegraphics[scale=0.25]{support/figures/pharo.png}\hspace*{0.5cm}~%
-      \includegraphics[scale=0.05]{support/figures/inria.png}\hspace*{0.5cm}~%
-      \includegraphics[scale=0.15]{support/figures/rmod.png}}
-
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
     \usebeamercolor[fg]{footline}%
