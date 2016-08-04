@@ -31,8 +31,5 @@ $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json
 cleanWorkspace: clean
 	rm -r ${OUTPUTDIRECTORY} || true
 
-clean:
-	rm -f *.aux *.log *.fls *.fdb_latexmk *.lof EnterprisePharo.out *.toc *.listing
-
 cleanBookResult:
-	rm ${OUTPUTDIRECTORY}/*.aux ${OUTPUTDIRECTORY}/*.fls ${OUTPUTDIRECTORY}/*.log ${OUTPUTDIRECTORY}/*.fdb_latexmk
+	rm ${OUTPUTDIRECTORY}/*.aux ${OUTPUTDIRECTORY}/*.fls ${OUTPUTDIRECTORY}/*.log ${OUTPUTDIRECTORY}/*.fdb_latexmk ${OUTPUTDIRECTORY}/*.listing ${OUTPUTDIRECTORY}/*.nav ${OUTPUTDIRECTORY}/*.out ${OUTPUTDIRECTORY}/*.snm ${OUTPUTDIRECTORY}/*.toc ${OUTPUDIRECTORY}/*.vrb
