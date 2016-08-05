@@ -9,6 +9,9 @@ include ./support/makefiles/copySupport.mk
 
 book: book-result/book.pdf book-result/book.html
 
+initDir:
+	mkdir -p $(OUTPUTDIRECTORY)
+
 #Tex compilation
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar copySupport
 	./pillar export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<

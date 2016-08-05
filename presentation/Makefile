@@ -6,6 +6,9 @@ include ./support/makefiles/copySupport.mk
 
 presentation: $(OUTPUTDIRECTORY)/presentation.pdf $(OUTPUTDIRECTORY)/presentation.html
 
+initDir:
+	mkdir -p $(OUTPUTDIRECTORY)
+
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar copySupport
 	./pillar export --to="Beamer" --outputDirectory=$(OUTPUTDIRECTORY) $<
 
