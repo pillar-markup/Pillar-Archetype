@@ -1,38 +1,36 @@
+MAIN = book
 OUTPUTDIRECTORY = ./book-result
 LATEXTEMPLATE = ./support/templates/latex.mustache.template
 HTMLTEMPLATE = ./support/templates/html.mustache.template
 
-EPUBMAKEFILE = ./support/makefiles/epub.mk
+.DEFAULT_GOAL = all
 
-include $(EPUBMAKEFILE)
-include ./support/makefiles/copySupport.mk
+.phony: all book pdf html clean fullclean
 
-book: book-result/book.pdf book-result/book.html
+all book: pdf html
+pdf: $(OUTPUTDIRECTORY)/$(MAIN).pdf
+html: $(OUTPUTDIRECTORY)/$(MAIN).html
 
-initDir:
-	mkdir -p $(OUTPUTDIRECTORY)
+clean:
+	latexmk -cd -C $(OUTPUTDIRECTORY)/$(MAIN) || true
 
-#Tex compilation
-$(OUTPUTDIRECTORY)/%.tex.json: %.pillar copySupport
+fullclean:
+	rm -fr ${OUTPUTDIRECTORY}
+
+include ./support/makefiles/prepare.mk
+include ./support/makefiles/epub.mk
+
+$(OUTPUTDIRECTORY)/%.tex.json: %.pillar prepare
 	./pillar export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
 $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json
 	./mustache --data=$< --template=${LATEXTEMPLATE} > $@
 
 $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
-	latexmk -outdir=${OUTPUTDIRECTORY} -use-make -pdf $<
-	make cleanBookResult
+	latexmk -cd -use-make $<
 
-#HTML compilation
-$(OUTPUTDIRECTORY)/%.html.json: %.pillar copySupport
+$(OUTPUTDIRECTORY)/%.html.json: %.pillar prepare
 	./pillar export --to="HTML" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
 $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json
 	./mustache --data=$< --template=${HTMLTEMPLATE} > $@
-
-#cleaning
-cleanWorkspace: clean
-	rm -r ${OUTPUTDIRECTORY} || true
-
-cleanBookResult:
-	rm ${OUTPUTDIRECTORY}/*.aux ${OUTPUTDIRECTORY}/*.fls ${OUTPUTDIRECTORY}/*.log ${OUTPUTDIRECTORY}/*.fdb_latexmk ${OUTPUTDIRECTORY}/*.listing ${OUTPUTDIRECTORY}/*.nav ${OUTPUTDIRECTORY}/*.out ${OUTPUTDIRECTORY}/*.snm ${OUTPUTDIRECTORY}/*.toc ${OUTPUDIRECTORY}/*.vrb
