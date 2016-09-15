@@ -1,5 +1,3 @@
-#!/bin/bash
-
 XHTMLTEMPLATE = ./support/templates/xhtml.mustache.template
 NAVMENUTEMPLATE = ./support/templates/nav.mustache.template
 TOCMENUTEMPLATE = ./support/templates/toc.mustache.template
