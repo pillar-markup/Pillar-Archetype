@@ -1,9 +1,9 @@
 MAIN = book
-OUTPUTDIRECTORY = ./book-result
-LATEXTEMPLATE = ./support/templates/latex.mustache.template
-HTMLTEMPLATE = ./support/templates/html.mustache.template
+OUTPUTDIRECTORY = ./build
+LATEXTEMPLATE = ./support/templates/main.latex.mustache
+HTMLTEMPLATE = ./support/templates/html.mustache
 
-.DEFAULT_GOAL = all
+.DEFAULT_GOAL = help
 
 .phony: all book pdf html clean fullclean
 
