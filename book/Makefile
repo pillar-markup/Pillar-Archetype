@@ -7,18 +7,20 @@ HTMLTEMPLATE = ./support/templates/html.mustache.template
 
 .phony: all book pdf html clean fullclean
 
-all book: pdf html
-pdf: $(OUTPUTDIRECTORY)/$(MAIN).pdf
-html: $(OUTPUTDIRECTORY)/$(MAIN).html
+all: pdf html ## Build the book in all formats
+book: all
+pdf: $(OUTPUTDIRECTORY)/$(MAIN).pdf ## Build the PDF book
+html: $(OUTPUTDIRECTORY)/$(MAIN).html ## Build the HTML book
 
-clean:
+clean: ## Cleanup intermediate build products
 	latexmk -cd -C $(OUTPUTDIRECTORY)/$(MAIN) || true
 
-fullclean:
+fullclean: ## Cleanup everything including final build products
 	rm -fr ${OUTPUTDIRECTORY}
 
 include ./support/makefiles/prepare.mk
 include ./support/makefiles/epub.mk
+include ./support/makefiles/help.mk
 
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar prepare
 	./pillar export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
