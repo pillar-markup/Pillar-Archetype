@@ -29,6 +29,7 @@ $(OUTPUTDIRECTORY):
 $(OUTPUTDIRECTORY)/support: $(OUTPUTDIRECTORY)
 	ln -fs ../support $(OUTPUTDIRECTORY)
 
+# extract versioning info for LaTeX
 $(OUTPUTDIRECTORY)/gitHeadLocal.gin: $(OUTPUTDIRECTORY) | submodules
 	support/latex/sbabook/gitinfo2.sh > $@
 
