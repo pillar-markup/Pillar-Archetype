@@ -13,7 +13,7 @@ pdf: $(OUTPUTDIRECTORY)/$(MAIN).pdf ## Build the PDF book
 html: $(OUTPUTDIRECTORY)/$(MAIN).html ## Build the HTML book
 
 clean: ## Cleanup intermediate build products
-	latexmk -cd -C $(OUTPUTDIRECTORY)/$(MAIN) || true
+	latexmk -cd -c $(OUTPUTDIRECTORY)/$(MAIN) || true
 
 fullclean: ## Cleanup everything including final build products
 	rm -fr ${OUTPUTDIRECTORY}
