@@ -39,10 +39,10 @@ include ./support/makefiles/help.mk
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar prepare
 	./pillar export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
-$(OUTPUTDIRECTORY)/$(MAIN).tex: $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json $(LATEXTEMPLATE)
-	./mustache --data=$< --template=$(LATEXTEMPLATE) > $@
-$(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.tex): $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json $(LATEXCHAPTERTEMPLATE)
-	./mustache --data=$< --template=$(LATEXCHAPTERTEMPLATE) > $@
+$(OUTPUTDIRECTORY)/$(MAIN).tex: TEMPLATE = $(LATEXTEMPLATE)
+$(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.tex): TEMPLATE = $(LATEXCHAPTERTEMPLATE)
+$(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json $(TEMPLATE)
+	./mustache --data=$< --template=$(TEMPLATE) > $@
 
 $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
 	latexmk -cd -use-make $<
@@ -50,7 +50,7 @@ $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
 $(OUTPUTDIRECTORY)/%.html.json: %.pillar prepare
 	./pillar export --to="HTML" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
 
-$(OUTPUTDIRECTORY)/$(MAIN).html: $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json $(HTMLTEMPLATE)
-	./mustache --data=$< --template=$(HTMLTEMPLATE) > $@
-$(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html): $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json $(HTMLCHAPTERTEMPLATE)
-	./mustache --data=$< --template=$(HTMLCHAPTERTEMPLATE) > $@
+$(OUTPUTDIRECTORY)/$(MAIN).html: TEMPLATE = $(HTMLTEMPLATE)
+$(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html): TEMPLATE = $(HTMLCHAPTERTEMPLATE)
+$(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json $(TEMPLATE)
+	./mustache --data=$< --template=$(TEMPLATE) > $@
