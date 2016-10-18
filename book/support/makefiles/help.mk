@@ -7,7 +7,12 @@
 .phony: help
 
 help: ## Describe the main targets (this list)
-	@awk -F ':|##' \
-		'/^[^\t].+?:.*?##/ {\
-			printf "\033[36m%-10s\033[0m %s\n", $$1, $$NF \
-		}' $(MAKEFILE_LIST)
+	@echo "Main targets you can build:"
+	@awk -F ':|## *' \
+		'/^[^\t].+:.*##/ {\
+			printf "  \033[36m%s\033[0m\t%s\n", $$1, $$NF \
+		}' $(MAKEFILE_LIST) \
+	| column -s $$'\t' -t
+	@echo "Combined format+volume targets are also defined: pdfbook, htmlchapters…"
+	@echo "To make a single specific file/format, ask for it explicitly:"
+	@echo "  make $(OUTPUTDIRECTORY)/$(firstword $(CHAPTERS)).pdf"
