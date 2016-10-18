@@ -11,17 +11,19 @@ HTMLCHAPTERTEMPLATE = $(HTMLTEMPLATE)
 
 .DEFAULT_GOAL = help
 
-.phony: all book pdf pdfchapters html htmlchapters clean fullclean
+.phony: all pdf html book pdfbook htmlbook chapters pdfchapters htmlchapters clean fullclean
 
-all: book chapters ## Build the book in all formats
-book: pdf html
-chapters: pdfchapters htmlchapters
+all: pdf html ## Build everything in all formats
+book: pdfbook htmlbook ## Full book only, all formats
+chapters: pdfchapters htmlchapters ## Separate chapters, all formats
 
-pdf: $(OUTPUTDIRECTORY)/$(MAIN).pdf ## Build the PDF book
-pdfchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.pdf) ## Build the PDF chapters
+pdf: pdfbook pdfchapters ## Everything PDF
+pdfbook: $(OUTPUTDIRECTORY)/$(MAIN).pdf
+pdfchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.pdf)
 
-html: $(OUTPUTDIRECTORY)/$(MAIN).html ## Build the HTML book
-htmlchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html) ## Build the HTML chapters
+html: htmlbook htmlchapters ## Everything HTML
+htmlbook: $(OUTPUTDIRECTORY)/$(MAIN).html
+htmlchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html)
 
 clean: prepare-clean ## Cleanup intermediate build products
 	for f in $(addprefix $(OUTPUTDIRECTORY)/,$(MAIN) $(CHAPTERS)); do \
