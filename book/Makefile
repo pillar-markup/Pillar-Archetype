@@ -3,10 +3,10 @@ CHAPTERS = \
 	Chapters/Chapter1/chapter1 \
 	Chapters/Chapter2/chapter2
 
-OUTPUTDIRECTORY = ./build
-LATEXTEMPLATE = ./support/templates/main.latex.mustache
-LATEXCHAPTERTEMPLATE = ./support/templates/chapter.latex.mustache
-HTMLTEMPLATE = ./support/templates/html.mustache
+OUTPUTDIRECTORY = build
+LATEXTEMPLATE = support/templates/main.latex.mustache
+LATEXCHAPTERTEMPLATE = support/templates/chapter.latex.mustache
+HTMLTEMPLATE = support/templates/html.mustache
 HTMLCHAPTERTEMPLATE = $(HTMLTEMPLATE)
 
 .DEFAULT_GOAL = help
