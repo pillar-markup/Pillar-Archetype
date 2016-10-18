@@ -1,4 +1,4 @@
-.phony: prepare buildsupport download submodules
+.phony: prepare prepare-build prepare-clean download submodules
 
 FIGURES := $(shell find . \
 		-type f \
@@ -8,7 +8,7 @@ FIGURES := $(shell find . \
 		-print)
 
 # Install build tools & dependencies, create the build directory structure
-prepare: submodules pillar mustache buildsupport
+prepare: submodules pillar mustache prepare-build
 
 # git doesn't automatically update the contents of submodules
 submodules:
@@ -21,7 +21,11 @@ download: ## Install Pharo VM & image for Pillar & Mustache
 
 # create & initialize output directory, mirroring stuff that has to match the
 # repo hierarchy inside the output dir.
-buildsupport: $(addprefix $(OUTPUTDIRECTORY)/, support gitHeadLocal.gin $(FIGURES))
+prepare-build: $(addprefix $(OUTPUTDIRECTORY)/, support gitHeadLocal.gin $(FIGURES))
+
+# cleanup stuff created in this makefile
+prepare-clean:
+	rm -f $(addprefix $(OUTPUTDIRECTORY)/, support gitHeadLocal.gin)
 
 $(OUTPUTDIRECTORY):
 	mkdir -p $(OUTPUTDIRECTORY)

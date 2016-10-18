@@ -23,10 +23,10 @@ pdfchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.pdf) ## Build the PDF chapters
 html: $(OUTPUTDIRECTORY)/$(MAIN).html ## Build the HTML book
 htmlchapters: $(CHAPTERS:%=$(OUTPUTDIRECTORY)/%.html) ## Build the HTML chapters
 
-clean: ## Cleanup intermediate build products
+clean: prepare-clean ## Cleanup intermediate build products
 	for f in $(addprefix $(OUTPUTDIRECTORY)/,$(MAIN) $(CHAPTERS)); do \
-		latexmk -cd -c "$$f" ; \
-		rm -f "$$f.tex" "$$f.tex.json" "$$f.html.json" ; \
+		latexmk -cd -f -c "$$f" ; \
+		rm -f "$$f.tex" "$$f.tex.json" "$$f.html.json" "$$(dirname $$f)/root" ; \
 	done
 
 fullclean: ## Cleanup everything including final build products
