@@ -1,3 +1,7 @@
+$(call check_defined, OUTPUTDIRECTORY, Directory for build products)
+$(call check_defined, MAIN, Base name of the main document)
+$(call check_defined, CHAPTERS, Base names of the chapters)
+
 .phony: prepare prepare-build prepare-clean download submodules
 
 FIGURES := $(shell find . \
