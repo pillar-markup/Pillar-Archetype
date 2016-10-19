@@ -34,9 +34,9 @@ clean: prepare-clean ## Cleanup intermediate build products
 fullclean: ## Cleanup everything including final build products
 	rm -fr ${OUTPUTDIRECTORY}
 
-include ./support/makefiles/prepare.mk
-include ./support/makefiles/epub.mk
-include ./support/makefiles/help.mk
+include support/makefiles/prepare.mk
+include support/makefiles/epub.mk
+include support/makefiles/help.mk
 
 $(OUTPUTDIRECTORY)/%.tex.json: %.pillar prepare
 	./pillar export --to="LaTeX" --outputDirectory=$(OUTPUTDIRECTORY) --outputFile=$< $<
