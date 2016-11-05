@@ -1,4 +1,4 @@
-OUTPUTDIRECTORY = ./book-result
+OUTPUTDIRECTORY = book-result
 LATEXTEMPLATE = support/templates/presentation.beamer.template
 HTMLTEMPLATE = support/templates/presentation.deckjs.template
 
@@ -16,8 +16,9 @@ $(OUTPUTDIRECTORY)/%.tex: $(OUTPUTDIRECTORY)/%.tex.json
 	./mustache --data=$< --template=${LATEXTEMPLATE} > $@
 
 $(OUTPUTDIRECTORY)/%.pdf: $(OUTPUTDIRECTORY)/%.tex
-	latexmk -silent -outdir=${OUTPUTDIRECTORY} -use-make -pdf $<
-	make cleanBookResult
+	# latexmk -silent -outdir=${OUTPUTDIRECTORY} -use-make -pdf $<
+	latexmk -outdir=${OUTPUTDIRECTORY} -aux-directory=${OUTPUTDIRECTORY} -pdf $<
+	# make cleanBookResult
 
 $(OUTPUTDIRECTORY)/%.html.json: %.pillar copySupport
 	./pillar export --to="DeckJS" --outputDirectory=$(OUTPUTDIRECTORY) $<
@@ -27,3 +28,6 @@ $(OUTPUTDIRECTORY)/%.html: $(OUTPUTDIRECTORY)/%.html.json
 
 cleanBookResult:
 	rm ${OUTPUTDIRECTORY}/*.aux ${OUTPUTDIRECTORY}/*.fls ${OUTPUTDIRECTORY}/*.log ${OUTPUTDIRECTORY}/*.fdb_latexmk ${OUTPUTDIRECTORY}/*.listing ${OUTPUTDIRECTORY}/*.nav ${OUTPUTDIRECTORY}/*.out ${OUTPUTDIRECTORY}/*.snm ${OUTPUTDIRECTORY}/*.toc ${OUTPUDIRECTORY}/*.vrb
+
+clean:
+	rm -fr ${OUTPUTDIRECTORY}

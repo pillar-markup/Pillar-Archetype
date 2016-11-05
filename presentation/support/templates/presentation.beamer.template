@@ -34,7 +34,6 @@
 \author{«& author»}
 \institute{«& complement»}
 \date{\today}
-\slidesid{«& slideId»}
 
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
