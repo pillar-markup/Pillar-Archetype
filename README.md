@@ -1,10 +1,11 @@
 # Pillar-Archetype
-Archetypes for Pillar projects
+Archetypes are templates for [Pillar](https://github.com/pillar-markup/pillar) projects.
 
-This project is directly related to Pillar (https://github.com/pillar-markup/pillar).
+Each subdirectory becomes available as a project skeleton to the `pillar archetype` command, e.g. `pillar archetype book` should give you a fresh template of a book project, ready to build and to write.
 
-To add an archetype, just create the file tree for your archetype and put empty file named ".keep" in each empty folder.
-Then put all your file in a folder with the archetype name.
+To add a new archetype, create a new folder and put your files there. 
+When you modify any of the files of the available archetype, run the ci https://ci.inria.fr/pharo-contribution/job/Pillar-Archetypes/.
+It will zip the files and the command can use them. 
 
-For more informations about archetypes, see the section archetype in the Pillar documentation
+To know more about archetypes read
 https://ci.inria.fr/pharo-contribution/job/EnterprisePharoBook/lastSuccessfulBuild/artifact/book-result/PillarChap/Pillar.html#archetypes
