@@ -2,7 +2,7 @@ $(call check_defined, OUTPUTDIRECTORY, Directory for build products)
 $(call check_defined, MAIN, Base name of the main document)
 $(call check_defined, CHAPTERS, Base names of the chapters)
 
-.phony: prepare clean wipeout download submodules prepare-build
+.phony: prepare clean wipeout download prepare-build
 
 FIGURES := $(shell find . \
 		-type f \
@@ -12,11 +12,7 @@ FIGURES := $(shell find . \
 		-print)
 
 # Install build tools & dependencies, create the build directory structure
-prepare: submodules pillar mustache prepare-build
-
-# git doesn't automatically update the contents of submodules
-submodules:
-	git submodule update --init --recursive
+prepare: pillar mustache prepare-build
 
 # wrapper scripts for pillar and mustache are created together from the pillar install script
 pillar mustache: | download
@@ -43,7 +39,7 @@ $(OUTPUTDIRECTORY)/support: $(OUTPUTDIRECTORY)
 	ln -fs ../support $(OUTPUTDIRECTORY)
 
 # extract versioning info for LaTeX
-$(OUTPUTDIRECTORY)/gitHeadLocal.gin: $(OUTPUTDIRECTORY) | submodules
+$(OUTPUTDIRECTORY)/gitHeadLocal.gin: $(OUTPUTDIRECTORY)
 	support/latex/sbabook/gitinfo2.sh > $@
 
 # this is making hardlinks (symlinks are verbose with absolute paths and
