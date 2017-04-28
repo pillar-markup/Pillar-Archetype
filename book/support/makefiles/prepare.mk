@@ -40,7 +40,7 @@ $(OUTPUTDIRECTORY)/support: $(OUTPUTDIRECTORY)
 
 # extract versioning info for LaTeX
 $(OUTPUTDIRECTORY)/gitHeadLocal.gin: $(OUTPUTDIRECTORY)
-	support/latex/sbabook/gitinfo2.sh > $@
+	bash support/latex/sbabook/gitinfo2.sh > $@
 
 # this is making hardlinks (symlinks are verbose with absolute paths and
 # computing relative paths is… complicated)
