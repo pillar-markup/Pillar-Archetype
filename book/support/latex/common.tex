@@ -1,21 +1,4 @@
-\newcommand{\paperbacklayout}{
-  \stockustrade
-  \setbleed{.125in}
-  % \setbinding{5mm}
-  \setlrmarginsandblock{.85in}{.65in}{*}
-  \setulmarginsandblock{.75in}{.75in}{*}
-}
-\newcommand{\spiralboundlayout}{
-  \setstocksize{11in}{210mm}% hybrid between A4 and US Letter
-  \setbleed{.125in}
-  \setlrmarginsandblock{1.5in}{1in}{*}
-  \setulmarginsandblock{1in}{1in}{*}
-}
-\providecommand{\setuplayout}{\paperbacklayout}
-
-\setuplayout
-\checkandfixthelayout
-\typeoutlayout
+\pagelayout{\paperbackpage}
 
 \usepackage{polyglossia}
 \usepackage[useregional]{datetime2}
