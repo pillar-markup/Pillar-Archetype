@@ -1,4 +1,4 @@
-OUTPUTDIRECTORY = ./book-result
+OUTPUTDIRECTORY = ./build
 HTMLTEMPLATE = support/templates/welcome.html.template
 
 include ./support/makefiles/copySupport.mk
