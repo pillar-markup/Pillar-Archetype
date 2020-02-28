@@ -1,4 +1,7 @@
 # Pillar-Archetype
+
+This project is obsolete for now (Pillar 8. Febr 2020). 
+
 Archetypes are templates for [Pillar](https://github.com/pillar-markup/pillar) projects.
 
 Each subdirectory becomes available as a project skeleton to the `pillar archetype` command, e.g. `pillar archetype book` should give you a fresh template of a book project, ready to build and to write.
